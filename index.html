@@ -186,14 +186,9 @@
 							<span class="carousel-control-next-icon"></span>
 							<span class="sr-only">Next</span>
 						</a>
-						<div id="carouselButton" class="btn-group">
-							<button id="carouselPause" class="btn btn-danger btn-sm">
-								<i class="fa fa-pause"></i>
-							</button>
-							<button id="carouselPlay" class="btn btn-danger btn-sm">
-								<i class="fa fa-play"></i>
-							</button>
-						</div>
+						<button id="carouselButton" class="btn btn-danger btn-sm">
+							<i class="fa fa-pause"></i>
+						</button>
 					</div>
 				</div>
 			</div>
@@ -279,11 +274,17 @@
 		<script>
 			$(function() {
 				$(".carousel").carousel({interval: 2000, pause: "false"});
-				$("#carouselPause").click(function() {
-					$(".carousel").carousel("pause");
-				});
-				$("#carouselPlay").click(function() {
-					$(".carousel").carousel("cycle");
+				$("#carouselButton").click(function() {
+					if ($("#carouselButton").children("i").hasClass("fa-pause")) {
+						$(".carousel").carousel("pause");
+						$("#carouselButton").children("i").removeClass("fa-pause");
+						$("#carouselButton").children("i").addClass("fa-play");
+					}
+					else {
+						$(".carousel").carousel("cycle");
+						$("#carouselButton").children("i").removeClass("fa-play");
+						$("#carouselButton").children("i").addClass("fa-pause");
+					}
 				});
 			});
 		</script>	
